@@ -18,7 +18,7 @@ router.post('/register', catchAsync(async (req, res) => {
         const registeredUser = await User.register(user, password);  //save user with a safe hashed password
         req.login(registeredUser, err => {
             if (err) return next(err);
-            req.flash('success', `Welcome to Yelp Camp ${username} !`);
+            req.flash('success', `Welcome to Cafe Lookout ${username} !`);
             res.redirect('/');
         })
     } catch (e) {

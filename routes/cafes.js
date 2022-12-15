@@ -57,7 +57,6 @@ router.get('/new', isLoggedIn, (req, res) => {
 
 //creating cafe
 router.post('/', isLoggedIn, upload.array('image'), validateCafe, catchAsync(async (req, res, next) => {
-    // if(!req.body.campground) throw new AppError("Invalid Campground Data", 400);
     const geoData = await geocoder.forwardGeocode({ //gets location
         query: req.body.cafe.location,
         limit: 1

@@ -32,7 +32,7 @@ export const isReviewAuthor = async (req, res, next) => {
     //if not then flash error and redirect to cafe page
     if (!review.author.equals(req.user._id)) {
         req.flash('error', "You don't have permission to do that");
-        return res.redirect(`/campgrounds/${id}`);
+        return res.redirect(`/cafes/${id}`);
     }
     next();
 }
