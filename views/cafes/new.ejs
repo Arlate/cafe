@@ -1,0 +1,64 @@
+<% layout('layouts/boilerplate') %>
+
+    <head>
+        <link rel="stylesheet" href="../styles.css">
+    </head>
+
+    <div class="container">
+        <div class="row">
+            <h1 class="text-center">New Cafe</h1>
+            <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
+                <form action="/cafes" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label class="form-label" for="name">Cafe Name</label>
+                        <input class="form-control" type="text" placeholder="" id="name" required name="cafe[title]">
+                        <div class="valid-feedback">Great!</div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="city">Location</label>
+                        <input class="form-control" type="text" id="city" placeholder="" required name="cafe[location]">
+                        <div class="valid-feedback">Great!</div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="price">Price</label>
+                        <div class="input-group">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="cafe[price]" id="inlineRadio1"
+                                    value="$">
+                                <label class="form-check-label" for="inlineRadio1">$</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="cafe[price]" id="inlineRadio2"
+                                    value="$$" checked>
+                                <label class="form-check-label" for="inlineRadio2">$$</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="cafe[price]" id="inlineRadio3"
+                                    value="$$$">
+                                <label class="form-check-label" for="inlineRadio3">$$$</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="cafe[price]" id="inlineRadio4"
+                                    value="$$$$">
+                                <label class="form-check-label" for="inlineRadio4">$$$$</label>
+                            </div>
+                            <div class="valid-feedback">Great!</div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="img">Add Images</label>
+                        <input class="form-control" type="file" name="image" id="img" multiple>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="desc">Description</label>
+                        <textarea class="form-control" type="text" id="desc" name="cafe[description]"
+                            required></textarea>
+                        <div class="valid-feedback">Great!</div>
+                    </div>
+                    <button class="btn btn-success">Submit</button>
+                </form>
+            </div>
+
+        </div>
+
+    </div>

@@ -1,0 +1,58 @@
+body{
+    font-family: 'Roboto',sans-serif;
+}
+
+#navbar {
+    /* background-color: #4B3621; */
+    background-color: #3D2B1F;
+}
+.nav-link{
+    color:white;
+    font-weight: 400;
+    font-size: 1.3rem;
+}
+.nav-link:hover{
+    color: white;
+    font-weight: 600;
+}
+
+#navlogo{
+    width: 80px;
+}
+.navbar{
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+footer{
+    background-color: #3D2B1F;
+}
+
+#foottxt{
+    color: white;
+    text-align: center;
+}
+
+@media (max-width: 700px) {
+    .nav-link{
+        font-size: 1.2rem;
+    }
+}
+
+.btn{
+    background-color: #3D2B1F;
+    color: white;
+    border: solid black 2px;
+    transition: 400ms;
+}
+
+.btn:hover{
+    background-color: #D6976D;
+    color: #3D2B1F;
+    border: solid #3D2B1F 2px;
+    /* font-weight: 600; */
+}
+
+/* .card {
+    min-height: 530px;
+} */

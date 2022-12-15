@@ -1,0 +1,140 @@
+<% layout('layouts/boilerplate') %>
+<link rel="stylesheet" href="/stars.css">
+<head>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<script>
+const cafe = <%- JSON.stringify(cafe) %>;
+const mapToken = "<%= mapsToken %>";
+</script>
+
+    <div class="container">
+        <div class="row mt-2">
+            <div class="col-6">
+
+                
+                <div class="card mb-4">
+                    <div id="carousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <% cafe.images.forEach((img,i) => {%> 
+                                <div class="carousel-item <%= i===0 ? 'active' : '' %>">
+                                <img src="<%= img.url %>" class="d-block w-100" alt="cafe" style="max-height:40rem;">
+                            </div>
+                                <% }) %> 
+                        </div>
+                        <% if (cafe.images.length > 1) { %>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                            </button>
+                        <% } %> 
+                      </div>
+                    <div class="card-body">
+                        <h1 class="card-title">
+                            <%= cafe.title %>
+                        </h1>
+                        <h3>
+                            <%= cafe.location %>
+                        </h3>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Price <%= cafe.price%>
+                        </li>
+                        <li class="list-group-item">
+                            <%=cafe.description%>
+                        </li>
+                        <li class="list-group-item text-muted">Submitted by: <%=cafe.author.username%>
+                        </li>
+                    </ul>
+
+                    <% if ( currentUser && cafe.author.equals(currentUser._id)) { %>
+                        <div class="card-body">
+                            <a class="btn btn-primary" href="/cafes/<%= cafe._id %>/edit">Edit</a>
+                            <span>
+                                <form class="d-inline" action="/cafes/<%=cafe._id%>?_method=DELETE" method="POST">
+                                    <button class="btn btn-danger">DELETE</button>
+                                </form>
+                            </span>
+                        </div>
+                        <% } %>
+                            <div class="card-footer text-muted">2 days ago</div>
+                </div>
+
+            </div>
+
+            <div class="col-6">
+                <div id='map' style='width: 100%; height: 350px;'></div>
+                <% if(currentUser) { %>
+                    <h3 class="mt-3 mb-2">Leave a review</h3>
+                    <form action="/cafes/<%= cafe._id %>/reviews" method="POST" class="validated-form mt-2"
+                        novalidate>
+                        <div class="mb-3">
+                            <label class="form-label" for="rating">Rating</label>
+                            <!-- <input class="form-range px-5" type="range" min="1" max="5" name="review[rating]"
+                                id="rating"> -->
+                                <div class="rating mx-2">
+                                    <input id="rating1" type="radio" name="review[rating]" value="1">
+                                    <label for="rating1">1</label>
+                                    <input id="rating2" type="radio" name="review[rating]" value="2">
+                                    <label for="rating2">2</label>
+                                    <input id="rating3" type="radio" name="review[rating]" value="3">
+                                    <label for="rating3">3</label>
+                                    <input id="rating4" type="radio" name="review[rating]" value="4">
+                                    <label for="rating4">4</label>
+                                    <input id="rating5" type="radio" name="review[rating]" value="5">
+                                    <label for="rating5">5</label>
+                                </div>
+                        </div>
+                        <div class="mb-3 mt-2">
+                            <label class="form-label" for="body">Review</label>
+                            <textarea name="review[body]" id="body" cols="30" rows="6" class="form-control"
+                                required></textarea>
+                        </div>
+                        <button class="btn btn-primary mb-3">Submit</button>
+                    </form>
+                    <% } %>
+                        <% if (cafe.reviews.length> 0) { %>
+                            <h4>Reviews</h4>
+                            <% } %>
+                                <div class="row mt-2">
+                                    <% for (review of cafe.reviews) { %>
+                                        <div class="card mb-3">
+                                            <div class="card-body">
+                                                <div id="stars" class="card-title mb-1">
+                                                    <% let i = 1 %>
+                                                    <%  while (i <=5) { %>
+                                                        <% if (i<= review.rating) {%>
+                                                            <span class="stars">&#9733;</span>
+                                                        <% } else { %>
+                                                            <span class="stars stars-no text-muted">&#9733;</span>
+                                                       <% } %>
+                                                       <% i++ %> 
+                                                    <% } %>
+                                                </div>
+                                                <h6 class="card-subtitle mb-2 text-muted">Submitted by:
+                                                    <%=review.author.username%>
+                                                </h6>
+                                                <p class="card-text">
+                                                    <%=review.body%>
+                                                </p>
+
+                                                <% if (currentUser && review.author.equals(currentUser._id)) { %>
+                                                    <form
+                                                        action="/cafes/<%=cafe._id%>/reviews/<%=review._id%>?_method=DELETE"
+                                                        method="post">
+                                                        <button class="btn btn-danger">DELETE</button>
+                                                    </form>
+                                                    <% } %>
+                                            </div>
+                                        </div>
+                                        <% } %>
+                                </div>
+            </div>
+        </div>
+    </div>
+
+<script src="/showMap.js"></script>

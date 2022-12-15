@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yelp Camp</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="homestyle.css">
+</head>
+
+<body class="d-flex text-center text-white bg-dark">
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+        <header class="">
+            <div>
+                <nav class="nav nav-masthead justify-content-end float-md-right">
+                    <!-- <a href="/" id="title">
+                        <h3 class="float-md-left mb-0">Cafe Lookout</h3>
+                    </a> -->
+                    <a href="/cafes" class="nav-link">Cafes</a>
+                    <% if (!currentUser) { %>
+                        <a href="/login" class="nav-link">Log In</a>
+                        <a href="/register" class="nav-link">Register</a>
+                        <% } else {%>
+                            <a href="/logout" class="nav-link">Log Out</a>
+                            <% } %>
+                </nav>
+            </div>
+        </header>
+        <main class="px-3 justify-content-center">
+            <h1 class="mb-2">Cafe Lookout</h1>
+            <a href="/cafes"><img src="logoW.png" alt="logo"></a>
+            <p class="lead">Welcome to Cafe Lookout! <br> <span class="textbox">
+                    The best place to find your new favourite Cafe in your neighbourhood.
+                    <br> Feel free to share some of your opinions with others!</span> </p>
+            <a href="/cafes" class="btn btn-lg btn-secondary font-weight-bold my-3">View Cafes</a>
+        </main>
+
+        <footer class="mt-auto text-white-50">
+            <p>&copy;2022 Cafe Lookout || Przemysław Sulich</p>
+        </footer>
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
