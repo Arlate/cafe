@@ -1,7 +1,7 @@
 //import DB url from env
 import * as dotenv from 'dotenv'
 dotenv.config()
-const dbUrl = process.env.dbUrl;
+const dbUrl = process.env.DBUrl;
 
 //imports for server
 import express from "express";
@@ -86,10 +86,10 @@ app.use(
 
 );
 
-mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true });
+
 //configuring session in mongoDB Cloud
 const store = MongoStore.create({
-    mongoUrl: "mongodb+srv://Arlat:6CrSHMM0B9VDyM2O@cafelookout.4eqxgyh.mongodb.net/?retryWrites=true&w=majority",
+    mongoUrl: dbUrl,
     dbName: 'cafeLookout',
     secret: process.env.SESSIONSECRET,
     touchAfter: 24 * 3600
@@ -127,7 +127,7 @@ passport.deserializeUser(User.deserializeUser());
 
 //connecting to DB
 // mongoose.connect('mongodb://127.0.0.1:27017/yelp-camp', { useNewUrlParser: true, useUnifiedTopology: true });
-
+mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console), "connection error");
