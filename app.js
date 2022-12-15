@@ -90,7 +90,6 @@ app.use(
 //configuring session in mongoDB Cloud
 const store = MongoStore.create({
     mongoUrl: dbUrl,
-    clientPromise,
     dbName: 'cafeLookout',
     secret: process.env.SESSIONSECRET,
     touchAfter: 24 * 3600
