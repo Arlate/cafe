@@ -86,7 +86,7 @@ app.use(
 
 );
 
-
+mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true });
 //configuring session in mongoDB Cloud
 const store = MongoStore.create({
     mongoUrl: dbUrl,
@@ -127,7 +127,7 @@ passport.deserializeUser(User.deserializeUser());
 
 //connecting to DB
 // mongoose.connect('mongodb://127.0.0.1:27017/yelp-camp', { useNewUrlParser: true, useUnifiedTopology: true });
-mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true });
+
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console), "connection error");
