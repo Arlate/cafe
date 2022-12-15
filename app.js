@@ -89,7 +89,7 @@ app.use(
 mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true });
 //configuring session in mongoDB Cloud
 const store = MongoStore.create({
-    mongoUrl: dbUrl,
+    mongoUrl: "mongodb+srv://Arlat:6CrSHMM0B9VDyM2O@cafelookout.4eqxgyh.mongodb.net/?retryWrites=true&w=majority",
     dbName: 'cafeLookout',
     secret: process.env.SESSIONSECRET,
     touchAfter: 24 * 3600
