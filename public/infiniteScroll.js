@@ -5,7 +5,7 @@ const cardTotalElem = document.getElementById("card-total");
 const loader = document.getElementById("loader");
 
 //global limit of loaded cards
-const cardLimit = 240;
+const cardLimit = cafesForCards.length;
 cardTotalElem.innerHTML = cardLimit;
 
 //increase per step

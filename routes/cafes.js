@@ -61,7 +61,6 @@ router.post('/', isLoggedIn, upload.array('image'), validateCafe, catchAsync(asy
         query: req.body.cafe.location,
         limit: 1
     }).send()
-    console.log(req.body.cafe.price)
     const cafe = new Cafe(req.body.cafe);
     cafe.geometry = geoData.body.features[0].geometry;
     cafe.author = req.user._id;
