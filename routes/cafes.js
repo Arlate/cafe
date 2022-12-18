@@ -46,7 +46,7 @@ const mapsToken = process.env.MAPTOKEN
 
 //all cafes page
 router.get('/', async (req, res) => {
-    const cafes = await Cafe.find({});
+    const cafes = await Cafe.find({}).sort({created: -1});
     res.render('cafes/index', { cafes, mapsToken })
 })
 
@@ -56,15 +56,19 @@ router.get('/new', isLoggedIn, (req, res) => {
 })
 
 //creating cafe
-router.post('/', isLoggedIn, upload.array('image'), validateCafe, catchAsync(async (req, res, next) => {
+router.post('/', isLoggedIn,  upload.array('image'), validateCafe, catchAsync(async (req, res, next) => {
+    // if(!req.body.campground) throw new AppError("Invalid Campground Data", 400);
     const geoData = await geocoder.forwardGeocode({ //gets location
         query: req.body.cafe.location,
         limit: 1
     }).send()
+    console.log(req.body.cafe.price)
     const cafe = new Cafe(req.body.cafe);
     cafe.geometry = geoData.body.features[0].geometry;
     cafe.author = req.user._id;
     cafe.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
+    let currentDate = new Date().toJSON();
+    cafe.created = currentDate;
     await cafe.save();
     req.flash('success', "Successfully added a new Cafe!");
     res.redirect(`/cafes/${cafe._id}`);

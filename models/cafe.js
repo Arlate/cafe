@@ -44,7 +44,8 @@ const CafeSchema = new Schema({
             type: [Number],
             // required: true
         }
-    }
+    },
+    created: String,
 }, opts);
 
 //virtual property for popUps on maps
