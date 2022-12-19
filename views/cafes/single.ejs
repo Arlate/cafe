@@ -61,7 +61,15 @@ const mapToken = "<%= mapsToken %>";
                             </span>
                         </div>
                         <% } %>
-                            <div class="card-footer text-muted"> <%= cafe.created.slice(0,10) %> </div>
+                            <div class="card-footer text-muted"> Added: 
+                                <% if (daysPassed === 0) { %>
+                                    today
+                                <% } else if(daysPassed === 1) {%>
+                                    1 day ago
+                                <% } else {%>
+                                    <%= daysPassed %> days ago
+                                <% } %> 
+                            </div>
                 </div>
 
             </div>

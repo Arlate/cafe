@@ -84,7 +84,11 @@ router.get('/:id', catchAsync(async (req, res) => {
         req.flash('error', 'Cannot find that Cafe');
         return res.redirect('/cafes');
     }
-    res.render('cafes/single', { cafe, mapsToken })
+    //for displaying date added
+    const currentDate = new Date();
+    const dateCreated = new Date(cafe.created);
+    const daysPassed = Math.round( (currentDate - dateCreated) / 1000 / 3600 / 24 );
+    res.render('cafes/single', { cafe, mapsToken, daysPassed });
 }))
 
 //editing Cafe if author is logged in
